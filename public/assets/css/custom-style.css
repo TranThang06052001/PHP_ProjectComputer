@@ -1,0 +1,11 @@
+.logo {
+    text-align: center;
+    padding: 20px 10px 40px 10px;
+}
+
+
+
+.wrapForm {
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
