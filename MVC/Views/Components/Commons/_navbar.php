@@ -1,10 +1,10 @@
 <nav class="navbar p-0 fixed-top d-flex flex-row">
   <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="./public/assets/images/logo-mini.svg" alt="logo" /></a>
+    <a class="navbar-brand brand-logo-mini" href="/Shop_Computer/admin"><img src="./public/images/logomini.png" alt="logo" /></a>
   </div>
   <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-      <span class="mdi mdi-menu"></span>
+      <span class="mdi mdi-menu" style="font-size:26px"></span>
     </button>
     <ul class="navbar-nav w-100">
       <li class="nav-item w-100">
@@ -14,7 +14,7 @@
       </li>
     </ul>
     <ul class="navbar-nav navbar-nav-right">
-      <li class="nav-item dropdown d-none d-lg-block">
+      <!-- <li class="nav-item dropdown d-none d-lg-block">
         <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-toggle="dropdown" aria-expanded="false" href="#">+ Create New Project</a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
           <h6 class="p-3 mb-0">Projects</h6>
@@ -54,13 +54,13 @@
           <div class="dropdown-divider"></div>
           <p class="p-3 mb-0 text-center">See all projects</p>
         </div>
-      </li>
-      <li class="nav-item nav-settings d-none d-lg-block">
+      </li> -->
+      <!-- <li class="nav-item nav-settings d-none d-lg-block">
         <a class="nav-link" href="#">
           <i class="mdi mdi-view-grid"></i>
         </a>
-      </li>
-      <li class="nav-item dropdown border-left">
+      </li> -->
+      <!-- <li class="nav-item dropdown border-left">
         <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
           <i class="mdi mdi-email"></i>
           <span class="count bg-success"></span>
@@ -100,7 +100,9 @@
           <div class="dropdown-divider"></div>
           <p class="p-3 mb-0 text-center">4 new messages</p>
         </div>
-      </li>
+      </li> -->
+
+      
       <li class="nav-item dropdown border-left">
         <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
           <i class="mdi mdi-bell"></i>
@@ -152,8 +154,8 @@
         <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
           <div class="navbar-profile">
             <img class="img-xs rounded-circle" src="./public/assets/images/faces/face15.jpg" alt="">
-            <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
-            <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+            <p class="mb-0 d-none d-sm-block navbar-profile-name"><?php echo(isset($_SESSION["User"])?$_SESSION["User"][0]->full_name:"");?></p>
+            <i class="mdi mdi-menu-down d-none d-sm-block" ></i>
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
@@ -170,7 +172,7 @@
             </div>
           </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item preview-item">
+          <a href="/Shop_Computer/admin/logout" class="dropdown-item preview-item">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-dark rounded-circle">
                 <i class="mdi mdi-logout text-danger"></i>
@@ -186,7 +188,7 @@
       </li>
     </ul>
     <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-      <span class="mdi mdi-format-line-spacing"></span>
+      <span class="mdi mdi-format-line-spacing"  style="font-size:26px"></span>
     </button>
   </div>
 </nav>

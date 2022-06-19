@@ -7,11 +7,11 @@ if (isset($_COOKIE["user"])) {
 };
 ?>
 
-<div class="wrapForm col-md-4">
-    <div class="card">
+<div class="wrapForm col-md-4 offset-md-4 ">
+    <div class="card" style="background-color:#2f3850">
         <div class="card-body">
-            <div class="logo">
-                <img src="<?php echo $host ?>/public/images/Logo.png" alt="logo">
+            <div class="logo mb-4 text-center">
+                <img width="80%" src="<?php echo $host ?>/public/images/Logo.png" alt="logo">
             </div>
             <form class="forms-sample" action="" method="post">
                 <div class="form-group">

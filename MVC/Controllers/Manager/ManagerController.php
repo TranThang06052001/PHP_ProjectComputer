@@ -13,7 +13,7 @@ class ManagerController extends BaseController
     private function checkLogin($param)
     {
         include("evConfig.php");
-        if (!isset($_SESSION["User"])) {
+        if (!isset($_SESSION["User"]) && !isset($_COOKIE["user"])) {
             header("Location:$host/admin/login");
         } else {
             return $param;
@@ -30,17 +30,14 @@ class ManagerController extends BaseController
         include("evConfig.php");
         if (isset($_POST["password"]) && isset($_POST["username"])) {
             $User = $this->connectModel()->CheckUser($_POST["username"], $_POST["password"]);
-
-            echo $_POST["password"] . $_POST["username"];
             if (!empty($User)) {
-                // $User=(array) $User;
                 $_SESSION["User"] = $User;
                 if (isset($_SESSION['message'])) {
                     unset($_SESSION['message']);
                 }
                 if (isset($_POST["Remember"])) {
                     $infoLogin = [$_POST["username"], $_POST["password"]];
-                    setcookie("user", json_encode($infoLogin));
+                    setcookie("user", json_encode($infoLogin),time()+365 * 24 * 60 * 60,"/");
                 }
                 header("Location:$host/admin");
             } else {
@@ -54,8 +51,12 @@ class ManagerController extends BaseController
     public function Logout()
     {
         include("evConfig.php");
+
         if (isset($_SESSION["User"])) {
             unset($_SESSION["User"]);
+        }
+        if(isset($_COOKIE["user"])){
+            setcookie("user", json_encode($infoLogin),time()-60,"/");
         }
         header("Location:$host/admin/login");
     }

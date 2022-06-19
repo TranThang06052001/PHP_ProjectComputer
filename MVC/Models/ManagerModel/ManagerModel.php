@@ -51,7 +51,7 @@ class ManagerModel
         if ($this->conn() != null) {
             $sql = "SELECT * FROM tbl_user WHERE username='$username' and password='$password'";
             $User = $this->conn()->query($sql);
-            $User =  $User->fetchAll();
+            $User =  $User->fetchAll(PDO::FETCH_OBJ);
             return   $User;
         }
         return false;

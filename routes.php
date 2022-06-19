@@ -15,11 +15,11 @@ class Route
     {
         $handleurl = new handleURL();
         $path = $handleurl->getURL();
-        $this->route(strtolower($path),$action);
+        $this->route(strtolower($path), $action);
     }
 
 
-    function route($path,$action)
+    function route($path, $action)
     {
         $ManageController = new ManagerController();
         $UserController = new UserController();
@@ -28,16 +28,16 @@ class Route
 
             switch ($path) {
                 case '/':
-                    return $ManageController->index("Shop Computer",$action);
+                    return $ManageController->index("Shop Computer", $action);
                     break;
                 case 'admin/login':
-                    return $ManageController->Login("Shop Computer - Login",$action);
+                    return $ManageController->Login("Shop Computer - Login", $action);
                     break;
                 case 'admin/logout':
                     return $ManageController->Logout();
                     break;
                 case 'admin/register':
-                    return $ManageController->Register("Shop Computer - Register",$action);
+                    return $ManageController->Register("Shop Computer - Register", $action);
                     break;
                 default:
                     echo "not found";
