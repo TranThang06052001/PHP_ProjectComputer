@@ -10,7 +10,7 @@ $routes = new Route();
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title><?= $routes->routeResult("title") ? $routes->routeResult("title") : "" ?></title>
+    <title>Shop Computer - <?= $routes->routeResult("title") ?></title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="<?= $host ?>/public/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="<?= $host ?>/public/assets/vendors/css/vendor.bundle.base.css">

@@ -1,6 +1,14 @@
+<?php
+
+require "evConfig.php";
+
+?>
+
+
+
 <nav class="navbar p-0 fixed-top d-flex flex-row">
   <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-    <a class="navbar-brand brand-logo-mini" href="/Shop_Computer/admin"><img src="./public/images/logomini.png" alt="logo" /></a>
+    <a class="navbar-brand brand-logo-mini" href="/Shop_Computer/admin"><img src="<?= $host ?>/public/images/logomini.png" alt="logo" /></a>
   </div>
   <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -14,95 +22,9 @@
       </li>
     </ul>
     <ul class="navbar-nav navbar-nav-right">
-      <!-- <li class="nav-item dropdown d-none d-lg-block">
-        <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-toggle="dropdown" aria-expanded="false" href="#">+ Create New Project</a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
-          <h6 class="p-3 mb-0">Projects</h6>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item preview-item">
-            <div class="preview-thumbnail">
-              <div class="preview-icon bg-dark rounded-circle">
-                <i class="mdi mdi-file-outline text-primary"></i>
-              </div>
-            </div>
-            <div class="preview-item-content">
-              <p class="preview-subject ellipsis mb-1">Software Development</p>
-            </div>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item preview-item">
-            <div class="preview-thumbnail">
-              <div class="preview-icon bg-dark rounded-circle">
-                <i class="mdi mdi-web text-info"></i>
-              </div>
-            </div>
-            <div class="preview-item-content">
-              <p class="preview-subject ellipsis mb-1">UI Development</p>
-            </div>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item preview-item">
-            <div class="preview-thumbnail">
-              <div class="preview-icon bg-dark rounded-circle">
-                <i class="mdi mdi-layers text-danger"></i>
-              </div>
-            </div>
-            <div class="preview-item-content">
-              <p class="preview-subject ellipsis mb-1">Software Testing</p>
-            </div>
-          </a>
-          <div class="dropdown-divider"></div>
-          <p class="p-3 mb-0 text-center">See all projects</p>
-        </div>
-      </li> -->
-      <!-- <li class="nav-item nav-settings d-none d-lg-block">
-        <a class="nav-link" href="#">
-          <i class="mdi mdi-view-grid"></i>
-        </a>
-      </li> -->
-      <!-- <li class="nav-item dropdown border-left">
-        <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-          <i class="mdi mdi-email"></i>
-          <span class="count bg-success"></span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
-          <h6 class="p-3 mb-0">Messages</h6>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item preview-item">
-            <div class="preview-thumbnail">
-              <img src="./public/assets/images/faces/face4.jpg" alt="image" class="rounded-circle profile-pic">
-            </div>
-            <div class="preview-item-content">
-              <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
-              <p class="text-muted mb-0"> 1 Minutes ago </p>
-            </div>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item preview-item">
-            <div class="preview-thumbnail">
-              <img src="./public/assets/images/faces/face2.jpg" alt="image" class="rounded-circle profile-pic">
-            </div>
-            <div class="preview-item-content">
-              <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
-              <p class="text-muted mb-0"> 15 Minutes ago </p>
-            </div>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item preview-item">
-            <div class="preview-thumbnail">
-              <img src="./public/assets/images/faces/face3.jpg" alt="image" class="rounded-circle profile-pic">
-            </div>
-            <div class="preview-item-content">
-              <p class="preview-subject ellipsis mb-1">Profile picture updated</p>
-              <p class="text-muted mb-0"> 18 Minutes ago </p>
-            </div>
-          </a>
-          <div class="dropdown-divider"></div>
-          <p class="p-3 mb-0 text-center">4 new messages</p>
-        </div>
-      </li> -->
 
-      
+
+
       <li class="nav-item dropdown border-left">
         <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
           <i class="mdi mdi-bell"></i>
@@ -153,22 +75,22 @@
       <li class="nav-item dropdown">
         <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
           <div class="navbar-profile">
-            <img class="img-xs rounded-circle" src="./public/assets/images/faces/face15.jpg" alt="">
-            <p class="mb-0 d-none d-sm-block navbar-profile-name"><?php echo(isset($_SESSION["User"])?$_SESSION["User"][0]->full_name:"");?></p>
-            <i class="mdi mdi-menu-down d-none d-sm-block" ></i>
+            <img class="img-xs rounded-circle" src="https://scontent.fhan2-4.fna.fbcdn.net/v/t1.6435-1/131218997_100872191924634_8525373899159583810_n.jpg?stp=cp0_dst-jpg_p86x86&_nc_cat=105&ccb=1-7&_nc_sid=dbb9e7&_nc_ohc=Kg3IkuDk14sAX8776NY&_nc_ht=scontent.fhan2-4.fna&oh=00_AT9NExg9qEsFZA7ErnHnr6WgKRyqJXDk-FQxCMwg__aURw&oe=62D7DF4A" alt="">
+            <p class="mb-0 d-none d-sm-block navbar-profile-name"><?php echo (isset($_SESSION["User"]) ? $_SESSION["User"][0]->full_name : ""); ?></p>
+            <i class="mdi mdi-menu-down d-none d-sm-block"></i>
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
           <h6 class="p-3 mb-0">Profile</h6>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item preview-item">
+          <a  href="/Shop_Computer/admin/ChangePassword" class="dropdown-item preview-item">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-dark rounded-circle">
-                <i class="mdi mdi-settings text-success"></i>
+              <i class="mdi mdi-security text-success"></i>
               </div>
             </div>
             <div class="preview-item-content">
-              <p class="preview-subject mb-1">Settings</p>
+              <p class="preview-subject mb-1">Change password</p>
             </div>
           </a>
           <div class="dropdown-divider"></div>
@@ -188,7 +110,7 @@
       </li>
     </ul>
     <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-      <span class="mdi mdi-format-line-spacing"  style="font-size:26px"></span>
+      <span class="mdi mdi-format-line-spacing" style="font-size:26px"></span>
     </button>
   </div>
 </nav>

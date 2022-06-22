@@ -10,7 +10,7 @@ $routes = new Route();
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title><?= $routes->routeResult("title") ? $routes->routeResult("title") : "" ?></title>
+    <title>Shop Computer - <?= $routes->routeResult("title") ? $routes->routeResult("title") : "" ?></title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="<?= $host ?>/public/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="<?= $host ?>/public/assets/vendors/css/vendor.bundle.base.css">
@@ -57,9 +57,9 @@ $routes = new Route();
     <script src="<?= $host ?>/public/assets/js/misc.js"></script>
     <script src="<?= $host ?>/public/assets/js/settings.js"></script>
     <script src="<?= $host ?>/public/assets/js/todolist.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
+    <script src="<?= $host ?>/public/assets/js/chart.js"></script>
     <script src="<?= $host ?>/public/assets/js/dashboard.js"></script>
+    <script src="<?= $host ?>/public/js/custom_js.js"></script>
 
 </body>
 

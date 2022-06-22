@@ -16,7 +16,7 @@ class ManagerModel
             $listUsers = $this->conn()->query($sql);
             return $listUsers;
         }
-        return false;
+        return null;
     }
     public function getListProducts()
     {
@@ -25,16 +25,17 @@ class ManagerModel
             $ListProducts = $this->conn()->query($sql);
             return $ListProducts;
         }
-        return false;
+        return null;
     }
     public function getUserByID($id)
     {
         if ($this->conn() != null) {
-            $sql = "SELECT * FROM tbl_user Where id= $id";
+            $sql = "SELECT * FROM tbl_user Where id_user= $id";
             $User = $this->conn()->query($sql);
+            $User =  $User->fetchAll(PDO::FETCH_OBJ);
             return $User;
         }
-        return false;
+        return null;
     }
     public function getProductByID($id)
     {
@@ -43,10 +44,11 @@ class ManagerModel
             $Product = $this->conn()->query($sql);
             return $Product;
         }
-        return false;
+        return null;
     }
     public function CheckUser($username, $password)
     {
+
         $password = md5($password);
         if ($this->conn() != null) {
             $sql = "SELECT * FROM tbl_user WHERE username='$username' and password='$password'";
@@ -54,19 +56,40 @@ class ManagerModel
             $User =  $User->fetchAll(PDO::FETCH_OBJ);
             return   $User;
         }
-        return false;
+        return null;
     }
-    public function ChangeUserPassword($username, $passwordOld, $passwordNew,$id)
+    public function ChangeUserPassword($username, $passwordOld, $passwordNew, $id)
     {
         /*cần check lại xem xét để làm xem khi nào nó đã update thành công*/
         $passwordNew = md5($passwordNew);
-        $Count = $this->CheckUser($username, $passwordOld);
-        if ($Count != null && $Count > 0) {
-            $sql = "UPDATE tbl_user SET password = $passwordNew WHERE id = $id";
+        $passwordOld = md5($passwordOld);
+        if ($this->conn() != null) {
+            $sql = "UPDATE tbl_user SET password = '$passwordNew' WHERE
+             id_user  = '$id' and password='$passwordOld'";
             $response = $this->conn()->query($sql);
-            return  $response;
+
+            if (!empty($response)) {
+                return  $this->getUserByID($id);
+            } else return null;
         }
-        return false;
+        return null;
     }
-    
+    public function ForgotPassword($username, $gamil)
+    {
+        if ($this->conn() != null) {
+            $sql = "SELECT * FROM tbl_user WHERE username='$username' and gmail='$gamil'";
+            $User = $this->conn()->query($sql);
+            $User =  $User->fetchAll(PDO::FETCH_OBJ);
+            // if (isset($User)) {
+            //     $sql = "UPDATE tbl_user SET password = '$passwordNew' WHERE
+            //      id_user  = '$id' and password='$passwordOld'";
+            //     $response = $this->conn()->query($sql);
+
+            //     if (!empty($response)) {
+            //         return  $this->getUserByID($id);
+            //     } else return null;
+            // }
+        }
+        return null;
+    }
 }
