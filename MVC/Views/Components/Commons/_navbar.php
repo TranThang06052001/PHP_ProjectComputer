@@ -1,6 +1,13 @@
 <?php
 
 require "evConfig.php";
+if (isset($_GET['search'])) {
+  $search = trim($_GET['search']);
+  $pathDefault = "/Shop_Computer/$path&search=$search";
+} else {
+  $search = '';
+  $pathDefault = "/Shop_Computer/$path";
+}
 
 ?>
 
@@ -16,15 +23,15 @@ require "evConfig.php";
     </button>
     <ul class="navbar-nav w-100">
       <li class="nav-item w-100">
-        <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-          <input type="text" class="form-control" placeholder="Search products">
-        </form>
+        <div class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
+          <input type="text" value="<?php echo $search; ?>" spellcheck="false" name="search" class="form-control searchinput" placeholder="Search..">
+          <a href="" class="search_link btn btn-primary">
+            <i class="mdi mdi-magnify" style="font-size:24px"></i>
+          </a>
+        </div>
       </li>
     </ul>
     <ul class="navbar-nav navbar-nav-right">
-
-
-
       <li class="nav-item dropdown border-left">
         <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
           <i class="mdi mdi-bell"></i>
@@ -83,10 +90,10 @@ require "evConfig.php";
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
           <h6 class="p-3 mb-0">Profile</h6>
           <div class="dropdown-divider"></div>
-          <a  href="/Shop_Computer/admin/ChangePassword" class="dropdown-item preview-item">
+          <a href="/Shop_Computer/admin/ChangePassword" class="dropdown-item preview-item">
             <div class="preview-thumbnail">
               <div class="preview-icon bg-dark rounded-circle">
-              <i class="mdi mdi-security text-success"></i>
+                <i class="mdi mdi-security text-success"></i>
               </div>
             </div>
             <div class="preview-item-content">
@@ -114,3 +121,9 @@ require "evConfig.php";
     </button>
   </div>
 </nav>
+<script>
+  let path = '<?php echo $path ?>';
+  $(".searchinput").on("change", function() {
+    $(".search_link").attr("href", `/Shop_Computer/${path}&search=` + $(".searchinput").val().trim());
+  })
+</script>

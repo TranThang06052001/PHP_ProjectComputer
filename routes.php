@@ -13,12 +13,7 @@ class Route
     function __construct()
     {
     }
-    function routeResult($action)
-    {
-        $handleurl = new handleURL();
-        $path = $handleurl->getURL();
-        $this->route(strtolower($path), $action);
-    }
+    
 
 
     function route($path, $action)
@@ -50,13 +45,34 @@ class Route
                 case 'admin/addproduct':
                     return $ProductController->AddProduct("Product",$action);
                     break;
+                case 'admin/deleteproduct':
+                    return $ProductController->DeleteProduct();
+                    break;
                 case 'admin/category':
                     return $CategoryController->index("Category",$action);
+                    break;
+                case 'admin/addcategory':
+                    return $CategoryController->AddCategory("Category",$action);
+                    break;
+                case 'admin/updatecategory':
+                    return $CategoryController->UpdateCategory();
+                    break;
+                case 'admin/deletecategory':
+                    return $CategoryController->DeleteCategory();
+                    break;
+                case 'admin/getlistcategorys':
+                    return $CategoryController->getListCategorys();
                     break;
                 default:
                     echo "not found";
                    
             };
         }
+    }
+    function routeResult($action)
+    {
+        $handleurl = new handleURL();
+        $path = $handleurl->getURL();
+        return $this->route(strtolower($path), $action);
     }
 }

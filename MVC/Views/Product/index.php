@@ -1,7 +1,6 @@
 <?php
 
 require "evConfig.php";
-// var_dump($data);
 ?>
 
 <div class="popup_add d-none">
@@ -19,8 +18,10 @@ require "evConfig.php";
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item pr-5">
                                     <select class="form-control form-control_custom" style="min-width:200px">
-                                        <option>Male</option>
-                                        <option>Female</option>
+                                    <option checked value="all">All*</option>
+                                        <?php foreach ($_SESSION["categorys"] as $category) { ?>
+                                            <option value="<?php echo $category->id_category ?>"><?php echo $category->name_category ?></option>
+                                        <?php } ?>
                                     </select>
                                 </li>
                                 <li class="breadcrumb-item pr-2">
@@ -30,10 +31,10 @@ require "evConfig.php";
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a class="btn btn-danger d-flex align-items-center" href="#">
+                                    <button class="btn delete_product btn-danger d-flex align-items-center">
                                         <i class="mdi mdi-delete-forever" style="font-size:20px"></i>
                                         Delete
-                                    </a>
+                                    </button>
                                 </li>
                             </ul>
                         </nav>
@@ -68,7 +69,7 @@ require "evConfig.php";
                                         <td>
                                             <div class="form-check form-check-muted m-0">
                                                 <label class="form-check-label">
-                                                    <input type="checkbox" class="form-check-input">
+                                                    <input id_product="<?php echo ($Product->id_product) ?>" type="checkbox" class="form-check-input form_check">
                                                 </label>
                                             </div>
                                         </td>
@@ -100,5 +101,37 @@ require "evConfig.php";
 <script type="text/javascript">
     $("img").on("error", function() {
         $(this).attr("src", "<?= $host ?>/public/images/defaulft_imagep.png")
+    })
+
+    /**?form_check/delete_product */
+    let check = 0;
+    $(".delete_product").on("click", function() {
+        $('.form_check').each(function() {
+            if (this.checked) {
+                check = 1;
+                $.ajax({
+                    url: "/Shop_Computer/admin/DeleteProduct",
+                    type: "POST",
+                    data: {
+                        id: ($(this).attr('id_product')),
+                    },
+                }).done((re) => {
+                    location.reload(true);
+                })
+            }
+        })
+        if (check == 0) {
+            alert('Please select the product you want to delete!')
+        }
+    })
+
+    $.ajax({
+        url: "/Shop_Computer/admin/getListCategorys",
+        type: "POST",
+        data: {
+
+        },
+    }).done((re) => {
+        console.log(re);
     })
 </script>

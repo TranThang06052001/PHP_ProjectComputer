@@ -22,16 +22,29 @@ class ProductController extends BaseController
     }
     public function AddProduct($title, $action)
     {
-        $name_product = $_POST['NameProduct'];
-        $price = $_POST['Price'];
-        $quantity = $_POST['Quantity'];
-        $sold = 2;
-        $imageURL = $_POST['NameProduct'];
-        $info_product = $_POST['NameProduct'];
-        $id_category = $_POST['category'];
-        $Producing_country = $_POST['ProducingCountry'];
-        $Production_company = $_POST['ProductionCompany'];
-        $data = $this->connectModel()->AddProduct($name_product, $price, $quantity, $sold, $imageURL, $info_product, $id_category, 1, $Producing_country, $Production_company);
-        $this->checkLogin($this->renderView('Product/index', $data, $title, $action));
+        require "evConfig.php";
+        if (isset($_POST['NameProduct']) && !empty($_POST['NameProduct'])) {
+            $name_product = trim($_POST['NameProduct']);
+            $price = trim($_POST['Price']);
+            $quantity = trim($_POST['Quantity']);
+            $sold = 2;
+            $imageURL = trim($_POST['NameProduct']);
+            $info_product = trim($_POST['NameProduct']);
+            $id_category = trim($_POST['category']);
+            $Producing_country = trim($_POST['ProducingCountry']);
+            $Production_company = trim($_POST['ProductionCompany']);
+            if (count($this->connectModel()->getProductByName($name_product)) <= 0) {
+                $this->connectModel()->AddProduct($name_product, $price, $quantity, $sold, $imageURL, $info_product, $id_category, 1, $Producing_country, $Production_company);
+            }
+            header("Location:$host/admin/ProductManagement");
+        }
+    }
+    public function DeleteProduct()
+    {
+        require "evConfig.php";
+        if (isset($_POST["id"])) {
+            $this->connectModel()->DeleteProduct($_POST["id"]);
+            header("Location:$host/admin/ProductManagement");
+        }
     }
 }

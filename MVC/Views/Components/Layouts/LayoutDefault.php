@@ -2,6 +2,7 @@
 require_once './routes.php';
 require "evConfig.php";
 $routes = new Route();
+// $title=$routes->routeResult("title") ;
 ?>
 <!DOCTYPE html>
 <html lang="en">

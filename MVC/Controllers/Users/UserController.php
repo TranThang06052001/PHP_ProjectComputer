@@ -2,12 +2,12 @@
 
 require_once (__DIR__.'/../BaseController.php');
 
-class UserController extends BaseController {
+// class UserController extends BaseController {
     
-    public function index()
-    {
+//     public function index()
+//     {
         
-        return $this->renderView('Users/index');
-    }
+//         return $this->renderView('Users/index');
+//     }
 
-}
+// }

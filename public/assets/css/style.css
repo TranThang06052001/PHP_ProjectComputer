@@ -11107,18 +11107,18 @@ pre code {
 .jsgrid .jsgrid-table td {
   padding: 0.9375rem;
   vertical-align: top;
-  border-top: 1px solid #2c2e33;
+  border-top: 1px solid #c6cae1;
 }
 
 .table thead th,
 .jsgrid .jsgrid-table thead th {
   vertical-align: bottom;
-  border-bottom: 2px solid #2c2e33;
+  border-bottom: 2px solid #c6cae1;
 }
 
 .table tbody+tbody,
 .jsgrid .jsgrid-table tbody+tbody {
-  border-top: 2px solid #2c2e33;
+  border-top: 2px solid #c6cae1;
 }
 
 .table-sm th,
@@ -11127,12 +11127,12 @@ pre code {
 }
 
 .table-bordered {
-  border: 1px solid #2c2e33;
+  border: 1px solid #c6cae1;
 }
 
 .table-bordered th,
 .table-bordered td {
-  border: 1px solid #2c2e33;
+  border: 1px solid #c6cae1;
 }
 
 .table-bordered thead th,
@@ -16022,13 +16022,17 @@ input[type="button"].btn-block {
 .jsgrid .jsgrid-pager .jsgrid-pager-nav-button a,
 .jsgrid .jsgrid-pager .jsgrid-pager-page a {
   position: relative;
-  display: block;
-  padding: 0.5rem 0.75rem;
-  margin-left: -1px;
-  line-height: 1.25;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  width:32px;
+  height: 32px;
+  margin: 4px;
+  /* line-height: 1.25; */
   color: #007bff;
-  background-color: #000000;
-  border: 1px solid #dee2e6;
+  background-color: #191c24;
+  border-radius: 100%;
+  /* border: 1px solid #dee2e6; */
 }
 
 .page-link:hover,
@@ -25943,7 +25947,7 @@ div.tagsinput {
 .table,
 .jsgrid .jsgrid-table {
   margin-bottom: 0;
-  color: #6c7293;
+  color: #c6cae1;
 }
 
 .table thead th,
@@ -25951,7 +25955,7 @@ div.tagsinput {
   border-top: 0;
   border-bottom-width: 1px;
   font-weight: 500;
-  color: #6c7293;
+  color: #c6cae1;
 }
 
 .table thead th i,
@@ -28285,7 +28289,7 @@ body.avgrund-active {
 
 .br-theme-bars-square .br-widget a {
   border-color: #4d4d4d;
-  color: #6c7293;
+  color: #c6cae1;
   background: transparent;
 }
 

@@ -34,6 +34,16 @@ class ProductModel
         }
         return null;
     }
+    public function getProductByName($name)
+    {
+        if ($this->conn() != null) {
+            $sql = "SELECT * FROM tbl_product WHERE name_product = '$name'";
+            $Product = $this->conn()->query($sql);
+            $Product = $Product->fetchAll(PDO::FETCH_OBJ);
+            return $Product;
+        }
+        return null;
+    }
     public function getListProducts()
     {
         if ($this->conn() != null) {
@@ -70,6 +80,15 @@ class ProductModel
         if ($this->conn() != null) {
             $sql = "INSERT INTO tbl_product (name_product, price, quantity, sold, imageURL, info_product, id_category, status_product, Producing_country, Production_company)
              VALUES ('$name_product','$price','$quantity','$sold', '$imageURL', '$info_product','$id_category', '1','$Producing_country','$Production_company')";
+            $response = $this->conn()->query($sql);
+            return  $response;
+        }
+        return null;
+    }
+    public function DeleteProduct($id)
+    {
+        if ($this->conn() != null) {
+            $sql = "DELETE FROM tbl_product WHERE id_product='$id'";
             $response = $this->conn()->query($sql);
             return  $response;
         }
