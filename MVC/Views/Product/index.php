@@ -3,9 +3,6 @@
 require "evConfig.php";
 ?>
 
-<div class="popup_add d-none">
-    <?php include __DIR__ . "/FormProduct.php"; ?>
-</div>
 <div class="content-wrapper">
 
     <div class="row ">
@@ -18,14 +15,14 @@ require "evConfig.php";
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item pr-5">
                                     <select class="form-control form-control_custom" style="min-width:200px">
-                                    <option checked value="all">All*</option>
+                                        <option checked value="all">All*</option>
                                         <?php foreach ($_SESSION["categorys"] as $category) { ?>
                                             <option value="<?php echo $category->id_category ?>"><?php echo $category->name_category ?></option>
                                         <?php } ?>
                                     </select>
                                 </li>
                                 <li class="breadcrumb-item pr-2">
-                                    <a class="btn-add-p btn btn-primary d-flex align-items-center" href="#">
+                                    <a class="btn-add-p btn btn-primary d-flex align-items-center" href="/Shop_Computer/admin/form">
                                         <i class="mdi mdi-plus" style="font-size:18px"></i>
                                         Add
                                     </a>
@@ -46,7 +43,7 @@ require "evConfig.php";
                                     <th>
                                         <div class="form-check form-check-muted m-0">
                                             <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input">
+                                                <input type="checkbox" class="form-check-input checkALL">
                                             </label>
                                         </div>
                                     </th>
@@ -55,7 +52,6 @@ require "evConfig.php";
                                     <th> Name </th>
                                     <th> Price </th>
                                     <th> Quantity </th>
-                                    <th> Producing country</th>
                                     <th> Production company </th>
                                     <th> Sold </th>
                                     <th> Category </th>
@@ -65,6 +61,7 @@ require "evConfig.php";
 
                                 <?php
                                 foreach ($data as $Product) { ?>
+
                                     <tr>
                                         <td>
                                             <div class="form-check form-check-muted m-0">
@@ -75,17 +72,23 @@ require "evConfig.php";
                                         </td>
                                         <td> <?php echo ($Product->id_product) ?></td>
                                         <td>
-                                            <img class="img-p" src="<?php echo ($Product->imageURL) ?>" />
+                                            <a href="/Shop_Computer/admin/form&id=<?php echo ($Product->id_product) ?>">
+                                                <img class="img-p" src="<?php echo $host . "/MVC/Upload/" . ($Product->imageURL) ?>" />
+                                            </a>
                                         </td>
 
                                         <td><?php echo ($Product->name_product) ?> </td>
                                         <td> <?php echo ($Product->price) ?> </td>
                                         <td> <?php echo ($Product->quantity) ?> </td>
-                                        <td><?php echo ($Product->Producing_country) ?> </td>
                                         <td><?php echo ($Product->Production_company) ?> </td>
                                         <td><?php echo ($Product->sold) ?> </td>
-                                        <td><?php echo ($Product->id_category) ?> </td>
-
+                                        <td><?php
+                                            foreach ($_SESSION["categorys"] as $category) {
+                                                if ($category->id_category == $Product->id_category) {
+                                                    echo ($category->name_category);
+                                                }
+                                            }
+                                            ?> </td>
                                     </tr>
                                 <?php }
                                 ?>
@@ -102,7 +105,17 @@ require "evConfig.php";
     $("img").on("error", function() {
         $(this).attr("src", "<?= $host ?>/public/images/defaulft_imagep.png")
     })
-
+    $(".checkALL").on("change", function() {
+        if (this.checked) {
+            $('.form_check').each(function() {
+                this.checked = true;
+            })
+        } else {
+            $('.form_check').each(function() {
+                this.checked = false;
+            })
+        }
+    })
     /**?form_check/delete_product */
     let check = 0;
     $(".delete_product").on("click", function() {
@@ -123,15 +136,5 @@ require "evConfig.php";
         if (check == 0) {
             alert('Please select the product you want to delete!')
         }
-    })
-
-    $.ajax({
-        url: "/Shop_Computer/admin/getListCategorys",
-        type: "POST",
-        data: {
-
-        },
-    }).done((re) => {
-        console.log(re);
     })
 </script>

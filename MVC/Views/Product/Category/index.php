@@ -51,7 +51,15 @@ require "evConfig.php";
                                             <td>
                                                 <input spellcheck="false" required id_category="<?php echo  $category->id_category ?>" class="NameCategory p-2" style="background-color: inherit;height:40px;width:200px; border: 1px solid #333;;outline:none;color: inherit" type="text" value=" <?php echo  $category->name_category ?>">
                                             </td>
-                                            <td>12 May 2017</td>
+                                            <td><?php
+                                                $count = 0;
+                                                foreach ($_SESSION["products"] as $product) {
+                                                    if ($category->id_category == $product->id_category) {
+                                                        $count++;
+                                                    }
+                                                }
+                                                echo  $count;
+                                                ?> </td>
                                             <td>
                                                 <div class="btn-group">
                                                     <a href="/Shop_Computer/admin/DeleteCategory&id=<?php echo  $category->id_category ?>" class="btn btn-danger d-flex align-items-center">
@@ -132,14 +140,7 @@ require "evConfig.php";
                 if ($(this).val().trim() == '') {
                     $(this).val($(this).prop('defaultValue'));
                 }
-                // <?php
-                    // if (isset($_SESSION['messagess'])) {
-                    //     echo "alert('$_SESSION[messagess]');";
-                    //     echo "$(this).val($(this).prop('defaultValue'))";
-                    // }
-                    // 
-                    ?>
-
+                
             })
         })
     })

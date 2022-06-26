@@ -84,10 +84,4 @@ class CategoryController extends BaseController
             header("Location:$host/admin/Category");
         }
     }
-    public function getListCategorys()
-    {
-        $data = $this->connectModel()->getListCategorys();
-        $_SESSION['categorys'] = $data;
-        exit();
-    }
 }

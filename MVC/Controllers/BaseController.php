@@ -1,11 +1,21 @@
 <?php
 
+require_once('MVC/Models/Product/CategoryModel.php');
+
+require_once('MVC/Models/Product/ProductModel.php');
 class BaseController
 {
 
-    function renderView($view, $data = null, $title, $action,$message=null)
+    function renderView($view, $data = null, $title, $action, $message = null)
     {
-        $action=strtolower($action);
+        $categoryModel = new CategoryModel();
+        $datas = $categoryModel->getListCategorys();
+        $_SESSION['categorys'] =  $datas;
+
+        $prroductModel = new ProductModel();
+        $datas = $prroductModel->getListProducts();
+        $_SESSION['products'] =  $datas;
+        $action = strtolower($action);
         switch ($action) {
             case  "content":
                 ob_start();

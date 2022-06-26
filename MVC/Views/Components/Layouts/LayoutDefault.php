@@ -28,7 +28,7 @@ $routes = new Route();
     <link rel="stylesheet" href="<?= $host ?>/public/assets/css/style.css">
     <link rel="stylesheet" href="<?= $host ?>/public/assets/css/custom-style.css">
     <!-- End layout styles -->
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -46,6 +46,8 @@ $routes = new Route();
         </div>
 
     </div>
+    <script src="//cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
+    <script src="https://cdn.baotrongit.com/Money-Format-Plugin/money_format.js"></script>
     <script src="<?= $host ?>/public/assets/vendors/chart.js/Chart.min.js"></script>
     <script src="<?= $host ?>/public/assets/vendors/progressbar.js/progressbar.min.js"></script>
     <script src="<?= $host ?>/public/assets/vendors/jvectormap/jquery-jvectormap.min.js"></script>

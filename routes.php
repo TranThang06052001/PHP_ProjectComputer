@@ -13,14 +13,14 @@ class Route
     function __construct()
     {
     }
-    
+
 
 
     function route($path, $action)
     {
         $ManageController = new ManagerController();
         $ProductController = new ProductController();
-        $CategoryController= new CategoryController();
+        $CategoryController = new CategoryController();
         if ($this->str_contains(explode("/", $path)[0], "admin")) {
             $path = !empty(str_replace('admin', '', $path)) ? $path : '/';
             switch ($path) {
@@ -43,16 +43,19 @@ class Route
                     return $ProductController->index("Product", $action);
                     break;
                 case 'admin/addproduct':
-                    return $ProductController->AddProduct("Product",$action);
+                    return $ProductController->AddProduct("Product", $action);
                     break;
                 case 'admin/deleteproduct':
                     return $ProductController->DeleteProduct();
                     break;
+                case 'admin/form':
+                    return $ProductController->form("Add", $action);
+                    break;
                 case 'admin/category':
-                    return $CategoryController->index("Category",$action);
+                    return $CategoryController->index("Category", $action);
                     break;
                 case 'admin/addcategory':
-                    return $CategoryController->AddCategory("Category",$action);
+                    return $CategoryController->AddCategory("Category", $action);
                     break;
                 case 'admin/updatecategory':
                     return $CategoryController->UpdateCategory();
@@ -60,12 +63,8 @@ class Route
                 case 'admin/deletecategory':
                     return $CategoryController->DeleteCategory();
                     break;
-                case 'admin/getlistcategorys':
-                    return $CategoryController->getListCategorys();
-                    break;
                 default:
                     echo "not found";
-                   
             };
         }
     }

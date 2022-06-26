@@ -27,7 +27,7 @@ class ProductModel
     public function getProductByID($id)
     {
         if ($this->conn() != null) {
-            $sql = "SELECT * FROM tbl_product WHERE id_product = $id";
+            $sql = "SELECT * FROM tbl_product WHERE id_product = '$id'";
             $Product = $this->conn()->query($sql);
             $Product = $Product->fetchAll(PDO::FETCH_OBJ);
             return $Product;
@@ -90,6 +90,15 @@ class ProductModel
         if ($this->conn() != null) {
             $sql = "DELETE FROM tbl_product WHERE id_product='$id'";
             $response = $this->conn()->query($sql);
+            return  $response;
+        }
+        return null;
+    }
+    public function getNameURLimage($url){
+        if ($this->conn() != null) {
+            $sql = "SELECT * FROM tbl_product WHERE imageURL='$url'";
+            $response = $this->conn()->query($sql);
+            $response= $response->fetchAll(PDO::FETCH_OBJ);
             return  $response;
         }
         return null;
