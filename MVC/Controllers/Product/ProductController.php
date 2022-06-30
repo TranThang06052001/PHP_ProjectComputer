@@ -19,6 +19,12 @@ class ProductController extends BaseController
     {
 
         $data = $this->connectModel()->getListProducts();
+        if (isset($_GET["search"])) {
+            $data = $this->connectModel()->SearchProduct(trim($_GET["search"]));
+        }
+        if(isset($_GET["category"]) && !empty($_GET["category"])){
+            $data = $this->connectModel()->getListProductsByCategory(trim($_GET["category"]));
+        }
         $this->checkLogin($this->renderView('Product/index', $data, $title, $action));
     }
     public function AddProduct($title, $action)
@@ -34,15 +40,67 @@ class ProductController extends BaseController
             }
             $name_product = trim($_POST['NameProduct']);
             $price = trim($_POST['Price']);
+            $sale = trim($_POST['sale']);
             $quantity = trim($_POST['Quantity']);
-            $sold = 2;
-
-            $info_product = trim($_POST['NameProduct']);
+            $description = $_POST['description'];
             $id_category = trim($_POST['category']);
-            $Producing_country = trim($_POST['ProducingCountry']);
             $Production_company = trim($_POST['ProductionCompany']);
             if (count($this->connectModel()->getProductByName($name_product)) <= 0) {
-                $this->connectModel()->AddProduct($name_product, $price, $quantity, $sold, $imageURL, $info_product, $id_category, 1, $Producing_country, $Production_company);
+                $this->connectModel()->AddProduct(
+                    $name_product,
+                    $price,
+                    $quantity,
+                    $sale,
+                    $imageURL,
+                    $description,
+                    $id_category,
+                    $Production_company
+                );
+            }
+            header("Location:$host/admin/ProductManagement");
+        }
+    }
+    public function UpdateProduct(   $id)
+    {
+        require "evConfig.php";
+        if (isset($_POST['NameProduct'])) {
+           
+            $imageURL = $this->connectModel()->getProductByID($id)[0]->imageURL;
+          
+            if (isset($_FILES['Image_product']) && explode("/", $_FILES['Image_product']['type'])[0] == "image") {
+                // if (count($this->connectModel()->getNameURLimage($imageURL)) ) {
+                //     $urls = __DIR__ . '/../../Upload/';
+                //     if (file_exists($urls . $imageURL)) {
+                //         unlink($urls . $imageURL);
+                //     }
+                // }
+                $imageURL = $_FILES['Image_product']['name'];
+                $url = __DIR__ . '/../../Upload/' . $imageURL;
+                if (count($this->connectModel()->getNameURLimage($imageURL)) <= 0) {
+                    move_uploaded_file($_FILES['Image_product']['tmp_name'], $url);
+                }
+            }
+              // echo $imageURL;
+            // die();
+            $name_product = trim($_POST['NameProduct']);
+            $price = trim($_POST['Price']);
+            $sale = trim($_POST['sale']);
+            $quantity = trim($_POST['Quantity']);
+            $description = $_POST['description'];
+            $id_category = trim($_POST['category']);
+            $Production_company = trim($_POST['ProductionCompany']);
+            if (count($this->connectModel()->getProductByName($name_product)) <= 1) {
+                $this->connectModel()->UpdateProduct(
+                    $id,
+                    $name_product,
+                    $price,
+                    $quantity,
+                    $sale,
+                    $imageURL,
+                    $description,
+                    $id_category,
+                    $Production_company
+                );
             }
             header("Location:$host/admin/ProductManagement");
         }

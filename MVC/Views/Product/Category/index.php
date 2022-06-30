@@ -19,7 +19,9 @@ require "evConfig.php";
                 </div>
 
                 <div class="table-responsive">
-                    <?php if (count($data) > 0) { ?>
+                    
+                    <?php 
+                    if (count($data) > 0) { ?>
                         <table class="table">
                             <thead>
                                 <tr>

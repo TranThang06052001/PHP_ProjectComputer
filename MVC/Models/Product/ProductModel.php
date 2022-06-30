@@ -69,17 +69,59 @@ class ProductModel
         $name_product,
         $price,
         $quantity,
-        $sold,
+        $sale,
         $imageURL,
-        $info_product,
+        $description,
         $id_category,
-        // $status_product,
-        $Producing_country,
         $Production_company
     ) {
         if ($this->conn() != null) {
-            $sql = "INSERT INTO tbl_product (name_product, price, quantity, sold, imageURL, info_product, id_category, status_product, Producing_country, Production_company)
-             VALUES ('$name_product','$price','$quantity','$sold', '$imageURL', '$info_product','$id_category', '1','$Producing_country','$Production_company')";
+            $sql = "INSERT INTO tbl_product (
+                 name_product,
+                 price,
+                 quantity,
+                 Sale,
+                 imageURL,
+                 description,
+                 id_category,
+                 Production_company)
+             VALUES (
+                '$name_product',
+                '$price',
+                '$quantity',
+                '$sale', 
+                '$imageURL',
+                '$description',
+                '$id_category',
+                '$Production_company')";
+            $response = $this->conn()->query($sql);
+            return  $response;
+        }
+        return null;
+    }
+    public function UpdateProduct(
+        $id,
+        $name_product,
+        $price,
+        $quantity,
+        $sale,
+        $imageURL,
+        $description,
+        $id_category,
+        $Production_company
+    ) {
+        //  echo "tsadasdecc";
+        //     die();
+        if ($this->conn() != null) {
+            $sql = "UPDATE tbl_product SET
+                 name_product='$name_product',
+                 price='$price',
+                 quantity='$quantity',
+                 Sale='$sale',
+                 imageURL='$imageURL',
+                 description='$description',
+                 id_category='$id_category',
+                 Production_company='$Production_company' Where id_product='$id'";
             $response = $this->conn()->query($sql);
             return  $response;
         }
@@ -94,12 +136,28 @@ class ProductModel
         }
         return null;
     }
-    public function getNameURLimage($url){
+    public function getNameURLimage($url)
+    {
         if ($this->conn() != null) {
             $sql = "SELECT * FROM tbl_product WHERE imageURL='$url'";
             $response = $this->conn()->query($sql);
-            $response= $response->fetchAll(PDO::FETCH_OBJ);
+            $response = $response->fetchAll(PDO::FETCH_OBJ);
             return  $response;
+        }
+        return null;
+    }
+    public function SearchProduct($search)
+    {
+        if ($this->conn() != null) {
+            // echo "Searching";
+            // die();
+            $sql = "SELECT * FROM tbl_product WHERE 
+             name_product like '%$search%' or id_product like '%$search%' 
+             or  Price like '%$search%'
+             ";
+            $listProducts = $this->conn()->query($sql);
+            $listProducts = $listProducts->fetchAll(PDO::FETCH_OBJ);
+            return $listProducts;
         }
         return null;
     }

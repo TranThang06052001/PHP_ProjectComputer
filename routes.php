@@ -3,6 +3,7 @@ require_once('handleURL.php');
 require_once('MVC/Controllers/Users/UserController.php');
 require_once('MVC/Controllers/Product/ProductController.php');
 require_once('MVC/Controllers/Product/CategoryController.php');
+require_once('MVC/Controllers/Users/UserController.php');
 require_once("MVC/Controllers/Manager/ManagerController.php");
 class Route
 {
@@ -21,6 +22,7 @@ class Route
         $ManageController = new ManagerController();
         $ProductController = new ProductController();
         $CategoryController = new CategoryController();
+        $UserController = new UserController();
         if ($this->str_contains(explode("/", $path)[0], "admin")) {
             $path = !empty(str_replace('admin', '', $path)) ? $path : '/';
             switch ($path) {
@@ -45,11 +47,14 @@ class Route
                 case 'admin/addproduct':
                     return $ProductController->AddProduct("Product", $action);
                     break;
+                case 'admin/updateproduct':
+                    return $ProductController->UpdateProduct($_GET['id']);
+                    break;
                 case 'admin/deleteproduct':
                     return $ProductController->DeleteProduct();
                     break;
                 case 'admin/form':
-                    return $ProductController->form("Add", $action);
+                    return $ProductController->form("", $action);
                     break;
                 case 'admin/category':
                     return $CategoryController->index("Category", $action);
@@ -62,6 +67,12 @@ class Route
                     break;
                 case 'admin/deletecategory':
                     return $CategoryController->DeleteCategory();
+                    break;
+                case 'admin/employeemanager':
+                    return $UserController->index("User", $action);
+                    break;
+                case 'admin/adduser':
+                    return $UserController->formADD("User", $action);
                     break;
                 default:
                     echo "not found";
